@@ -1,19 +1,27 @@
-package controller;
+package launcher;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.HibernateUtil;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        HibernateUtil.getSessionFactory();
         Parent root = FXMLLoader.load(getClass().getResource("/controller/sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 750, 600));
         primaryStage.show();
+
+
+        primaryStage.setOnCloseRequest(event -> {
+            HibernateUtil.shutdown();
+        });
+
     }
 
 

@@ -1,5 +1,6 @@
 package controller;
 
+import entity.ClassInTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -84,7 +85,7 @@ public class Controller {
         while (scanner.hasNextLine()) {
             String string = scanner.nextLine();
             String[] strings = string.split(" ");
-            linkedList.add(new ClassInTable(Double.parseDouble(strings[1]), strings[0].charAt(0), 0, '0'));
+            linkedList.add(new ClassInTable(Double.parseDouble(strings[1]), strings[0].charAt(0), 0.0, '0'));
         }
         linkedList.sort(((o1, o2) -> (int) (o2.getFrequency() * 100 - o1.getFrequency() * 100)));
         stringList = FXCollections.observableList(linkedList);
