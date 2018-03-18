@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane fx:id="container" minHeight="400.0" minWidth="625.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateController">
+    <Label layoutX="105.0" layoutY="34.0" text="UPDATE"/>
+    <Label layoutX="127.0" layoutY="67.0" text="SET"/>
+    <TextField fx:id="update" layoutX="154.0" layoutY="30.0" prefHeight="25.0" prefWidth="383.0"
+               promptText="&lt;table_name&gt;"/>
+    <TextField fx:id="where" layoutX="152.0" layoutY="97.0" prefHeight="25.0" prefWidth="383.0"
+               promptText="&lt;condition&gt;;"/>
+    <Label layoutX="105.0" layoutY="101.0" text="WHERE"/>
+    <TextField fx:id="set" layoutX="154.0" layoutY="63.0" prefHeight="25.0" prefWidth="383.0"
+               promptText="column1 = value1, column2 = value2,..."/>
+    <Button layoutX="285.0" layoutY="200.0" mnemonicParsing="false" text="Update" fx:id="update_button"/>
+</AnchorPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="mainBorderPane" fx:controller="controller.MainController" xmlns:fx="http://javafx.com/fxml">
+    <left>
+        <VBox spacing="10.0">
+            <BorderPane.margin>
+                <Insets left="25.0" top="25.0" right="10.0"/>
+            </BorderPane.margin>
+            <Button text="Select" userData="/controller/select.fxml" onAction="#handleShowView"/>
+            <Button text="Insert" userData="/controller/insert.fxml" onAction="#handleShowView"/>
+            <Button text="Update" userData="/controller/update.fxml" onAction="#handleShowView"/>
+            <Button text="Delete" userData="/controller/delete.fxml" onAction="#handleShowView"/>
+            <Button text="Show All Tables" userData="/controller/showall.fxml" onAction="#handleShowView"/>
+        </VBox>
+    </left>
+    <center>
+        <fx:include source="select.fxml"/>
+    </center>
+</BorderPane>
