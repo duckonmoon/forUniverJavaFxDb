@@ -18,9 +18,6 @@ public class InsertController {
 
     private JDBCService jdbcService = new JDBCService();
 
-    public InsertController() throws SQLException {
-    }
-
     public void initialize() {
         insert_button.setOnAction((event -> {
             try {

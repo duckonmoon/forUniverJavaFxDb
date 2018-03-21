@@ -10,7 +10,7 @@ public class JDBCDao {
 
     private Statement statement;
 
-    public JDBCDao() throws SQLException {
+    public JDBCDao() {
     }
 
     public ResultSet select(String sql) throws SQLException {

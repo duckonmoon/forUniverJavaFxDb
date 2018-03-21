@@ -27,9 +27,6 @@ public class ShowAllController {
     @FXML
     TableView tableview;
 
-    public ShowAllController() throws SQLException {
-    }
-
     public void initialize() {
         choice.valueProperty().addListener((ov, t, t1) -> {
             ResultSet rs;

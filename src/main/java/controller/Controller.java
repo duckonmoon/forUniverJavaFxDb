@@ -36,9 +36,6 @@ public class Controller {
 
     private ObservableList<ObservableList> data;
 
-    public Controller() throws SQLException {
-    }
-
     public void initialize() {
 
 

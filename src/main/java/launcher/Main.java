@@ -18,7 +18,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Parent root = FXMLLoader.load(getClass().getResource("/controller/main.fxml"));
         primaryStage.setTitle("University");
         primaryStage.getIcons().add(new Image("/drawable/spring-framework-project-logo.png"));
@@ -28,7 +27,6 @@ public class Main extends Application {
 
 
         primaryStage.setOnCloseRequest(event -> {
-                    //HibernateUtil.shutdown();
                     try {
                         JDBCUtil.shutDown();
                     } catch (SQLException e) {

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class JDBCService {
     private JDBCDao jdbcDao = new JDBCDao();
 
-    public JDBCService() throws SQLException {
+    public JDBCService() {
     }
 
     public ResultSet select(String sql) throws SQLException {

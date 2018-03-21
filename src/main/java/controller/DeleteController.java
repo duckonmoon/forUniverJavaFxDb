@@ -18,9 +18,6 @@ public class DeleteController {
 
     private JDBCService jdbcService = new JDBCService();
 
-    public DeleteController() throws SQLException {
-    }
-
     public void initialize() {
         delete_button.setOnAction((event -> {
             try {

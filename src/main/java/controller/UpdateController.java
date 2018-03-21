@@ -27,9 +27,6 @@ public class UpdateController {
 
     private JDBCService jdbcService = new JDBCService();
 
-    public UpdateController() throws SQLException {
-    }
-
     public void initialize() {
         update_button.setOnAction((event -> {
             try {
