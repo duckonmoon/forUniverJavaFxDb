@@ -8,19 +8,23 @@ import java.sql.Statement;
 
 public class JDBCDao {
 
-    private Statement statement = JDBCUtil.getStatement();
+    private Statement statement;
 
     public JDBCDao() throws SQLException {
     }
 
-
-    public ResultSet getAllEntities() throws SQLException {
-        Statement statement = JDBCUtil.getStatement();
-        String query = "Select * from classintable";
-        return statement.executeQuery(query);
+    public ResultSet select(String sql) throws SQLException {
+        statement = JDBCUtil.getStatement();
+        return statement.executeQuery(sql);
     }
 
     public void closeStatement() throws SQLException {
+        statement.close();
+    }
+
+    public void execSQL(String sql) throws SQLException {
+        Statement statement = JDBCUtil.getStatement();
+        statement.execute(sql);
         statement.close();
     }
 }

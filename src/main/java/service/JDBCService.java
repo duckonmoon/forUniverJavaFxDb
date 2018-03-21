@@ -11,8 +11,12 @@ public class JDBCService {
     public JDBCService() throws SQLException {
     }
 
-    public ResultSet getAllEntities() throws SQLException {
-        return jdbcDao.getAllEntities();
+    public ResultSet select(String sql) throws SQLException {
+        return jdbcDao.select(sql);
+    }
+
+    public void execSQL(String sql) throws SQLException {
+        jdbcDao.execSQL(sql);
     }
 
     public void closeStatement() throws SQLException {

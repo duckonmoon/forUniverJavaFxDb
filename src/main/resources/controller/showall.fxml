@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.ShowAllController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane prefHeight="400.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowAllController">
+    <children>
+        <ComboBox layoutX="211.0" layoutY="14.0" prefHeight="25.0" prefWidth="162.0" promptText="choose table" fx:id="choice">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="exam"/>
+                    <String fx:value="lecturer"/>
+                    <String fx:value="result"/>
+                    <String fx:value="session"/>
+                    <String fx:value="student"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <TableView layoutX="4.0" layoutY="46.0" prefHeight="540.0" prefWidth="600.0" fx:id="tableview">
+        </TableView>
+    </children>
 </AnchorPane>

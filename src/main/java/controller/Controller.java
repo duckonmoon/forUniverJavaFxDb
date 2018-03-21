@@ -9,10 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import service.JDBCService;
+import util.AlertDialog;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class Controller {
 
 
-    JDBCService service = new JDBCService();
+    private JDBCService service = new JDBCService();
 
     @FXML
     AnchorPane container;
@@ -40,20 +40,28 @@ public class Controller {
     }
 
     public void initialize() {
+
+
+
         click.setOnAction(event -> {
             ResultSet rs;
             tableview.getColumns().clear();
             data = FXCollections.observableArrayList();
             try {
-                rs = service.getAllEntities();
+                rs = service.select(buildSelectString());
                 setColumnsNames(rs);
                 getInfoFromResultSet(rs);
                 tableview.setItems(data);
                 closeStatementsAndResultSet(rs);
             } catch (SQLException e) {
-                e.printStackTrace();
+                AlertDialog.createAlertDialog(e);
             }
         });
+    }
+
+    private String buildSelectString() {
+        String sqlString = "SELECT " + textarea.getText();
+        return sqlString;
     }
 
     private void closeStatementsAndResultSet(ResultSet rs) throws SQLException {
