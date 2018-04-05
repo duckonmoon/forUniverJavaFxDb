@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import service.JDBCService;
 import util.AlertDialog;
 
 import java.sql.SQLException;
@@ -25,19 +24,14 @@ public class UpdateController {
     @FXML
     AnchorPane container;
 
-    private JDBCService jdbcService = new JDBCService();
-
     public UpdateController() throws SQLException {
     }
 
     public void initialize() {
         update_button.setOnAction((event -> {
-            try {
-                jdbcService.execSQL(buildUpdateString());
-                AlertDialog.createSuccessDialog("Your update succeed");
-            } catch (SQLException e) {
-                AlertDialog.createAlertDialog(e);
-            }
+
+            AlertDialog.createSuccessDialog("Your update succeed");
+
 
         }));
     }

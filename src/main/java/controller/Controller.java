@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
-import service.JDBCService;
 import util.AlertDialog;
 
 import java.sql.ResultSet;
@@ -19,8 +18,6 @@ import java.sql.SQLException;
 
 public class Controller {
 
-
-    private JDBCService service = new JDBCService();
 
     @FXML
     AnchorPane container;
@@ -42,50 +39,18 @@ public class Controller {
     public void initialize() {
 
 
-
         click.setOnAction(event -> {
             ResultSet rs;
             tableview.getColumns().clear();
             data = FXCollections.observableArrayList();
-            try {
-                rs = service.select(buildSelectString());
-                setColumnsNames(rs);
-                getInfoFromResultSet(rs);
-                tableview.setItems(data);
-                closeStatementsAndResultSet(rs);
-            } catch (SQLException e) {
-                AlertDialog.createAlertDialog(e);
-            }
+            tableview.setItems(data);
+
+            AlertDialog.createAlertDialog(new SQLException());
         });
     }
 
     private String buildSelectString() {
         String sqlString = "SELECT " + textarea.getText();
         return sqlString;
-    }
-
-    private void closeStatementsAndResultSet(ResultSet rs) throws SQLException {
-        rs.close();
-        service.closeStatement();
-    }
-
-
-    private void setColumnsNames(ResultSet rs) throws SQLException {
-        for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-            final int j = i;
-            TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
-            col.setCellValueFactory((Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>) param -> new SimpleStringProperty(param.getValue().get(j).toString()));
-            tableview.getColumns().addAll(col);
-        }
-    }
-
-    private void getInfoFromResultSet(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                row.add(rs.getString(i));
-            }
-            data.add(row);
-        }
     }
 }

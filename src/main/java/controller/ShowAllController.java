@@ -9,15 +9,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import service.JDBCService;
 import util.AlertDialog;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ShowAllController {
-
-    private JDBCService service = new JDBCService();
 
     private ObservableList<ObservableList> data;
 
@@ -35,22 +32,12 @@ public class ShowAllController {
             ResultSet rs;
             tableview.getColumns().clear();
             data = FXCollections.observableArrayList();
-            try {
-                rs = service.select("Select * from " + t1);
-                setColumnsNames(rs);
-                getInfoFromResultSet(rs);
-                tableview.setItems(data);
-                closeStatementsAndResultSet(rs);
-            } catch (SQLException e) {
-                AlertDialog.createAlertDialog(e);
-            }
         });
     }
 
 
     private void closeStatementsAndResultSet(ResultSet rs) throws SQLException {
         rs.close();
-        service.closeStatement();
     }
 
 

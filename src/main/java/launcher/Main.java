@@ -6,9 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import util.JDBCUtil;
 
-import java.sql.SQLException;
+import org.hibernate.SessionFactory;
+import util.HibernateUtil;
 
 public class Main extends Application {
 
@@ -18,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Parent root = FXMLLoader.load(getClass().getResource("/controller/main.fxml"));
         primaryStage.setTitle("University");
         primaryStage.getIcons().add(new Image("/drawable/spring-framework-project-logo.png"));
@@ -28,12 +28,7 @@ public class Main extends Application {
 
 
         primaryStage.setOnCloseRequest(event -> {
-                    //HibernateUtil.shutdown();
-                    try {
-                        JDBCUtil.shutDown();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    HibernateUtil.shutdown();
                 }
         );
 
