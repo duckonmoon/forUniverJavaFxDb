@@ -9,20 +9,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import util.AlertDialog;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ShowAllController {
 
-    private ObservableList<ObservableList> data;
-
     @FXML
     ComboBox<String> choice;
-
     @FXML
     TableView tableview;
+    private ObservableList<ObservableList> data;
 
     public ShowAllController() throws SQLException {
     }

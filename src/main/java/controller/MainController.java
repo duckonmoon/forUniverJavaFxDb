@@ -15,7 +15,7 @@ public class MainController {
 
     @FXML
     private void handleShowView(ActionEvent e) {
-        String view = (String) ((Node)e.getSource()).getUserData();
+        String view = (String) ((Node) e.getSource()).getUserData();
         loadFXML(getClass().getResource(view));
     }
 
@@ -23,8 +23,7 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(url);
             mainBorderPane.setCenter(loader.load());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

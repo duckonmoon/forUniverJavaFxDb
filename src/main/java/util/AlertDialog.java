@@ -43,7 +43,7 @@ public class AlertDialog {
         alert.showAndWait();
     }
 
-    public static void createSuccessDialog(String messsage){
+    public static void createSuccessDialog(String messsage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText(null);
