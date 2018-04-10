@@ -4,11 +4,12 @@ import org.hibernate.annotations.Check;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Check(constraints = "enddate >= startdate")
-public class Session extends BaseEntity {
+public class Session extends BaseEntity implements Serializable {
     @Column(name = "startdate")
     private Date startDate;
 

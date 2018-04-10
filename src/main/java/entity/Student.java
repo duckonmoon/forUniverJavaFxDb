@@ -2,9 +2,10 @@ package entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class Student extends BaseEntity {
+public class Student extends BaseEntity implements Serializable {
     private Boolean expelled;
     private String name;
     private String surname;

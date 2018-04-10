@@ -1,28 +1,52 @@
 package dao;
 
-import org.hibernate.SessionFactory;
-import util.HibernateUtil;
+import entity.*;
+import util.JPAUtil;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public class SelectDao {
 
-    private static SelectDao INSTANCE;
+    private EntityManagerFactory entityManagerFactory;
 
-    SessionFactory sessionFactory;
-
-    private SelectDao() {
-        sessionFactory = HibernateUtil.getSessionFactory();
+    public SelectDao() {
+        entityManagerFactory = JPAUtil.getEntityManagerFactory();
     }
 
-    public static SelectDao getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new SelectDao();
-        }
-        return INSTANCE;
+    public List<Session> getAllSessions() {
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        List<Session> sessions = manager.createQuery("from Session").getResultList();
+        manager.close();
+        return sessions;
     }
 
-    private List<Object[]> executeSelect(String select) {
-        return sessionFactory.getCurrentSession().createQuery(select).list();
+    public List<Lecturer> getAllLecturers() {
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        List<Lecturer> lecturers = manager.createQuery("from Lecturer").getResultList();
+        manager.close();
+        return lecturers;
+    }
+
+    public List<Student> getAllStudents() {
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        List<Student> students = manager.createQuery("from Student ").getResultList();
+        manager.close();
+        return students;
+    }
+
+    public List<Result> getAllResults() {
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        List<Result> results = manager.createQuery("from Result").getResultList();
+        manager.close();
+        return results;
+    }
+
+    public List<Exam> getAllExams() {
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        List<Exam> exams = manager.createQuery("from Exam ").getResultList();
+        manager.close();
+        return exams;
     }
 }

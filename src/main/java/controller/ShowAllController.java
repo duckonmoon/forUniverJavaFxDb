@@ -1,17 +1,23 @@
 package controller;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
+import dto.ExamDTO;
+import dto.ResultDTO;
+import entity.Lecturer;
+import entity.Session;
+import entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
+import javafx.scene.control.cell.PropertyValueFactory;
+import service.SelectService;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ShowAllController {
 
@@ -19,44 +25,57 @@ public class ShowAllController {
     ComboBox<String> choice;
     @FXML
     TableView tableview;
-    private ObservableList<ObservableList> data;
+    private SelectService selectService = new SelectService();
 
-    public ShowAllController() throws SQLException {
+    public ShowAllController() {
     }
 
     public void initialize() {
         choice.valueProperty().addListener((ov, t, t1) -> {
-            ResultSet rs;
+            ObservableList data = FXCollections.observableArrayList();
             tableview.getColumns().clear();
-            data = FXCollections.observableArrayList();
+            switch (t1) {
+                case "session":
+                    addColumnsToTableView(Session.class, tableview);
+                    data.addAll(selectService.getAllSessions());
+                    break;
+                case "lecturer":
+                    addColumnsToTableView(Lecturer.class, tableview);
+                    data.addAll(selectService.getAllLecturers());
+                    break;
+                case "student":
+                    addColumnsToTableView(Student.class, tableview);
+                    data.addAll(selectService.getAllStudents());
+                    break;
+                case "result":
+                    addColumnsToTableView(ResultDTO.class, tableview);
+                    data.addAll(selectService.getAllResults());
+                    break;
+                case "exam":
+                    addColumnsToTableView(ExamDTO.class, tableview);
+                    data.addAll(selectService.getAllExams());
+                    break;
+            }
+            tableview.setItems(data);
         });
     }
 
-
-    private void closeStatementsAndResultSet(ResultSet rs) throws SQLException {
-        rs.close();
-    }
-
-
-    private void setColumnsNames(ResultSet rs) throws SQLException {
-        for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-            System.out.print(" ");
-            final int j = i;
-            TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
-            col.setCellValueFactory((Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>) param -> new SimpleStringProperty(param.getValue().get(j).toString()));
-            tableview.getColumns().addAll(col);
-        }
-    }
-
-    private void getInfoFromResultSet(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-            System.out.print(" ");
-            ObservableList<String> row = FXCollections.observableArrayList();
-            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                row.add(rs.getString(i));
+    private void addColumnsToTableView(Class<?> classs, TableView tableView) {
+        List<TableColumn> tableColumns = new ArrayList<>();
+        do {
+            Field[] fields = classs.getDeclaredFields();
+            for (Field field : fields) {
+                TableColumn column = new TableColumn(field.getName());
+                column.setCellValueFactory(
+                        new PropertyValueFactory<Session, String>(field.getName()));
+                tableColumns.add(column);
             }
-            data.add(row);
-        }
+            classs = classs.getSuperclass();
+        } while (classs != null);
 
+        Collections.reverse(tableColumns);
+        for (TableColumn column : tableColumns) {
+            tableView.getColumns().add(column);
+        }
     }
 }

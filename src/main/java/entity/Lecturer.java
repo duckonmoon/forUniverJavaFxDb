@@ -1,9 +1,10 @@
 package entity;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class Lecturer extends BaseEntity {
+public class Lecturer extends BaseEntity implements Serializable {
     private String name;
     private String surname;
 

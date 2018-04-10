@@ -6,8 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.hibernate.SessionFactory;
-import util.HibernateUtil;
+import util.JPAUtil;
+
+import javax.persistence.EntityManagerFactory;
 
 public class Main extends Application {
 
@@ -17,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        EntityManagerFactory factory = JPAUtil.getEntityManagerFactory();
         Parent root = FXMLLoader.load(getClass().getResource("/controller/main.fxml"));
         primaryStage.setTitle("University");
         primaryStage.getIcons().add(new Image("/drawable/spring-framework-project-logo.png"));
@@ -27,7 +28,7 @@ public class Main extends Application {
 
 
         primaryStage.setOnCloseRequest(event -> {
-          //          HibernateUtil.shutdown();
+                    JPAUtil.shutdown();
                 }
         );
 
