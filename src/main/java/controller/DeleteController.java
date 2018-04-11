@@ -84,7 +84,17 @@ public class DeleteController {
         });
 
         delete_button.setOnAction((event -> {
-            selectService.delete(select_box.valueProperty().get(), aClass);
+            try {
+                AlertDialog.createConfirmationDialog(()-> {
+                    selectService.delete(select_box.valueProperty().get(), aClass);
+                    if (anchor_pane.getChildren().contains(delete_button)) {
+                        anchor_pane.getChildren().remove(delete_button);
+                    }
+                }, ()->{});
+            } catch (Exception e){
+                AlertDialog.createAlertDialog(e);
+            }
+
         }));
     }
 }

@@ -1,33 +1,42 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import util.AlertDialog;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 
 public class InsertController {
-    @FXML
-    public TextField insert;
-    @FXML
-    public TextField values;
-    @FXML
-    public Button insert_button;
 
-    public InsertController() throws SQLException {
+    @FXML
+    public BorderPane insertBorderPane;
+
+    public InsertController() {
     }
 
     public void initialize() {
-        insert_button.setOnAction((event -> {
-            AlertDialog.createSuccessDialog("Your insert succeed");
-            AlertDialog.createAlertDialog(new SQLException());
-        }));
+
     }
 
-    private String buildInsertString() {
-        String sqlString = "INSERT INTO " + insert.getText() + " ";
-        sqlString += "VALUES " + values.getText();
-        return sqlString;
+    @FXML
+    private void handleShowView(ActionEvent e) {
+        String view = (String) ((Node) e.getSource()).getUserData();
+        loadFXML(getClass().getResource(view));
+    }
+
+    private void loadFXML(URL url) {
+        try {
+            FXMLLoader loader = new FXMLLoader(url);
+            insertBorderPane.setCenter(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

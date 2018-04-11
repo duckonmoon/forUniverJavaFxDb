@@ -1,13 +1,16 @@
 package util;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import listener.DialogClickListener;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Optional;
 
 public class AlertDialog {
     public static void createAlertDialog(Exception e) {
@@ -47,6 +50,29 @@ public class AlertDialog {
         alert.setTitle("Success");
         alert.setHeaderText(null);
         alert.setContentText(messsage);
+
+        alert.showAndWait();
+    }
+
+    public static void createConfirmationDialog(DialogClickListener yes,DialogClickListener no){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Confirm?");
+        alert.setContentText("When you delete this, it will deleted forever with related to its recordings");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            yes.onClick();
+        } else {
+            no.onClick();
+        }
+    }
+
+    public static void createAlertDialog(String title,String headerText,String contentText){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
 
         alert.showAndWait();
     }

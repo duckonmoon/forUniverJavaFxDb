@@ -54,30 +54,49 @@ public class SelectDao {
 
     public void delete(BaseEntity object, String clazz) {
         EntityManager manager = entityManagerFactory.createEntityManager();
-        manager.getTransaction().begin();
-        Object persistanceObject;
-        switch (clazz) {
-            case SESSION:
-                persistanceObject = manager.find(Session.class, object.getId());
-                break;
-            case LECTURER:
-                persistanceObject = manager.find(Lecturer.class, object.getId());
-                break;
-            case STUDENT:
-                persistanceObject = manager.find(Student.class, object.getId());
-                break;
-            case EXAM:
-                persistanceObject = manager.find(Exam.class, object.getId());
-                break;
-            case RESULT:
-                persistanceObject = manager.find(Result.class, object.getId());
-                break;
-            default:
-                persistanceObject = null;
-                break;
+        try{
+            manager.getTransaction().begin();
+
+            Object persistanceObject;
+            switch (clazz) {
+                case SESSION:
+                    persistanceObject = manager.find(Session.class, object.getId());
+                    break;
+                case LECTURER:
+                    persistanceObject = manager.find(Lecturer.class, object.getId());
+                    break;
+                case STUDENT:
+                    persistanceObject = manager.find(Student.class, object.getId());
+                    break;
+                case EXAM:
+                    persistanceObject = manager.find(Exam.class, object.getId());
+                    break;
+                case RESULT:
+                    persistanceObject = manager.find(Result.class, object.getId());
+                    break;
+                default:
+                    persistanceObject = null;
+                    break;
+            }
+            manager.remove(persistanceObject);
+            manager.getTransaction().commit();
+            manager.close();
+        } catch (Exception e) {
+            manager.getTransaction().rollback();
+            manager.close();
+            throw e;
         }
-        manager.remove(persistanceObject);
-        manager.getTransaction().commit();
-        manager.close();
+    }
+
+    public void insert(BaseEntity object){
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        try {
+            manager.getTransaction().begin();
+            manager.persist(object);
+            manager.getTransaction().commit();
+        } catch (Exception e){
+            manager.getTransaction().rollback();
+            manager.close();
+        }
     }
 }

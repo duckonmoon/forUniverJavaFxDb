@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor_pane" minHeight="400.0" minWidth="625.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DeleteController">
+<AnchorPane fx:id="anchor_pane" minHeight="600.0" minWidth="625.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DeleteController">
    <children>
        <ComboBox fx:id="choice" layoutX="211.0" layoutY="14.0" prefHeight="25.0" prefWidth="162.0" promptText="choose table">
            <items>

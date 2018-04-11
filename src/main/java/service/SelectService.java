@@ -69,4 +69,8 @@ public class SelectService {
     public void delete(BaseEntity object, String clazz) {
         selectDao.delete(object, clazz);
     }
+
+    public void insert(BaseEntity entity){
+        selectDao.insert(entity);
+    }
 }
