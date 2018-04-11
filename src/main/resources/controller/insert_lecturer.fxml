@@ -7,9 +7,9 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InsertLecturerController">
    <children>
-      <Button layoutX="274.0" layoutY="405.0" mnemonicParsing="false" text="Insert" />
-      <TextField layoutX="226.0" layoutY="128.0" promptText="Name" />
-      <TextField layoutX="226.0" layoutY="275.0" promptText="Surname" />
+      <Button fx:id="insertButton" layoutX="274.0" layoutY="405.0" mnemonicParsing="false" text="Insert" />
+      <TextField fx:id="nameTextField" layoutX="226.0" layoutY="128.0" promptText="Name" />
+      <TextField fx:id="surnameTextField" layoutX="226.0" layoutY="275.0" promptText="Surname" />
       <Label layoutX="262.0" layoutY="32.0" text="Insert Lecturer" />
    </children>
 </AnchorPane>

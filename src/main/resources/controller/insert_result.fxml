@@ -10,11 +10,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InsertResultController">
-   <children>
-      <ComboBox layoutX="211.0" layoutY="97.0" prefWidth="150.0" promptText="exam" />
+      <ComboBox fx:id="examComboBox" layoutX="107.0" layoutY="97.0" prefHeight="25.0" prefWidth="414.0" promptText="exam" />
       <Label layoutX="253.0" layoutY="44.0" text="Insert Result" />
-      <ComboBox layoutX="211.0" layoutY="180.0" prefWidth="150.0" promptText="student" />
-      <ChoiceBox layoutX="211.0" layoutY="265.0" prefHeight="25.0" prefWidth="48.0">
+      <ComboBox fx:id="studentComboBox" layoutX="106.0" layoutY="180.0" prefHeight="25.0" prefWidth="414.0" promptText="student" />
+      <ChoiceBox fx:id="comission1ChoiceBox" layoutX="211.0" layoutY="265.0" prefHeight="25.0" prefWidth="48.0">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="YES" />
@@ -22,7 +21,7 @@
               </FXCollections>
           </items>
       </ChoiceBox>
-      <ChoiceBox layoutX="313.0" layoutY="265.0" prefHeight="25.0" prefWidth="48.0">
+      <ChoiceBox fx:id="comission2ChoiceBox" layoutX="313.0" layoutY="265.0" prefHeight="25.0" prefWidth="48.0">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="YES" />
@@ -30,7 +29,8 @@
               </FXCollections>
           </items>
       </ChoiceBox>
-      <TextField layoutX="212.0" layoutY="357.0" promptText="mark" />
-      <Button layoutX="263.0" layoutY="509.0" mnemonicParsing="false" text="Insert" />
-   </children>
+      <TextField fx:id="markTextField" layoutX="212.0" layoutY="357.0" promptText="mark" />
+      <Button fx:id="insert" layoutX="263.0" layoutY="509.0" mnemonicParsing="false" text="Insert" />
+      <Label layoutX="205.0" layoutY="236.0" text="comission1" />
+      <Label layoutX="307.0" layoutY="236.0" text="comission2" />
 </AnchorPane>

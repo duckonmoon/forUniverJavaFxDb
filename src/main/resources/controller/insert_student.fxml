@@ -8,9 +8,9 @@
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InsertStudentController">
    <children>
       <Label layoutX="263.0" layoutY="30.0" text="Insert Student" />
-      <TextField layoutX="226.0" layoutY="134.0" promptText="name" />
-      <TextField layoutX="226.0" layoutY="275.0" promptText="surname" />
-      <TextField layoutX="226.0" layoutY="423.0" promptText="identical number" />
-      <Button layoutX="277.0" layoutY="501.0" mnemonicParsing="false" text="Insert" />
+      <TextField layoutX="226.0" layoutY="134.0" promptText="name" fx:id="nameTextField" />
+      <TextField layoutX="226.0" layoutY="275.0" promptText="surname" fx:id="surnameTextField" />
+      <TextField layoutX="226.0" layoutY="423.0" promptText="identical number" fx:id="identicalNumberTextField" />
+      <Button layoutX="277.0" layoutY="501.0" mnemonicParsing="false" text="Insert" fx:id="insert"/>
    </children>
 </AnchorPane>

@@ -28,10 +28,16 @@ public class InsertSessionController {
                 if(endDate.compareTo(startDate) <= 0){
                     AlertDialog.createAlertDialog("Error","Incorrect Input","end date cant be before start date");
                 } else{
-                    Session session = new Session();
-                    session.setStartDate(startDate);
-                    session.setEndDate(endDate);
-                    selectService.insert(session);
+                    try {
+                        Session session = new Session();
+                        session.setStartDate(startDate);
+                        session.setEndDate(endDate);
+                        selectService.insert(session);
+                        AlertDialog.createSuccessDialog("Session inserted");
+                    } catch (Exception e){
+                        AlertDialog.createAlertDialog(e);
+                    }
+
                 }
             } else {
                 AlertDialog.createAlertDialog("Error","Fill all fields","Some fields are empty!");
