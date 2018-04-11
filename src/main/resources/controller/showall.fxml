@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<AnchorPane prefHeight="400.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.121"
+<AnchorPane prefHeight="600.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowAllController">
     <children>
         <ComboBox layoutX="211.0" layoutY="14.0" prefHeight="25.0" prefWidth="162.0" promptText="choose table" fx:id="choice">

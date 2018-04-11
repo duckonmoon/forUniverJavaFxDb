@@ -1,40 +1,100 @@
 package controller;
 
+import entity.BaseEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import service.JDBCService;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
+import service.SelectService;
 import util.AlertDialog;
 
-import java.sql.SQLException;
-
 public class DeleteController {
+
+    public static final String SESSION = "Session";
+    public static final String LECTURER = "Lecturer";
+    public static final String STUDENT = "Student";
+    public static final String RESULT = "Result";
+    public static final String EXAM = "Exam";
+
+
     @FXML
-    public TextField delete_from;
+    public ComboBox<String> choice;
+
     @FXML
-    public TextField where;
+    public ComboBox<BaseEntity> select_box;
+
     @FXML
     public Button delete_button;
 
-    private JDBCService jdbcService = new JDBCService();
+    @FXML
+    public AnchorPane anchor_pane;
 
-    public DeleteController() throws SQLException {
+    private SelectService selectService = new SelectService();
+
+    private String aClass = null;
+
+
+    public DeleteController() {
     }
 
     public void initialize() {
+        anchor_pane.getChildren().remove(delete_button);
+        delete_button.setOnAction((event -> {
+            AlertDialog.createSuccessDialog("Your delete succeed");
+
+        }));
+
+        choice.valueProperty().addListener((ov, t, t1) -> {
+            ObservableList<BaseEntity> list = FXCollections.observableArrayList();
+            select_box.setVisible(true);
+            if (anchor_pane.getChildren().contains(delete_button)) {
+                anchor_pane.getChildren().remove(delete_button);
+            }
+            switch (t1) {
+                case "session":
+                    aClass = SESSION;
+                    list.addAll(selectService.getAllSessions());
+                    break;
+                case "lecturer":
+                    aClass = LECTURER;
+                    list.addAll(selectService.getAllLecturers());
+                    break;
+                case "student":
+                    aClass = STUDENT;
+                    list.addAll(selectService.getAllStudents());
+                    break;
+                case "result":
+                    aClass = RESULT;
+                    list.addAll(selectService.getAllClearResults());
+                    break;
+                case "exam":
+                    aClass = EXAM;
+                    list.addAll(selectService.getAllClearExams());
+                    break;
+            }
+            select_box.setItems(list);
+        });
+
+        select_box.valueProperty().addListener((ov, t, t1) -> {
+            if (t1 != null && !anchor_pane.getChildren().contains(delete_button)) {
+                anchor_pane.getChildren().add(delete_button);
+            }
+        });
+
         delete_button.setOnAction((event -> {
             try {
-                jdbcService.execSQL(buildDeleteString());
-                AlertDialog.createSuccessDialog("Your delete succeed");
-            } catch (SQLException e) {
+                AlertDialog.createConfirmationDialog(()-> {
+                    selectService.delete(select_box.valueProperty().get(), aClass);
+                    if (anchor_pane.getChildren().contains(delete_button)) {
+                        anchor_pane.getChildren().remove(delete_button);
+                    }
+                }, ()->{});
+            } catch (Exception e){
                 AlertDialog.createAlertDialog(e);
             }
-        }));
-    }
 
-    private String buildDeleteString() {
-        String sqlString = "DELETE FROM " + delete_from.getText() + " ";
-        sqlString += "WHERE " + where.getText();
-        return sqlString;
+        }));
     }
 }

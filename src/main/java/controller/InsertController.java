@@ -1,40 +1,42 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import service.JDBCService;
+import javafx.scene.layout.BorderPane;
 import util.AlertDialog;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 
 public class InsertController {
-    @FXML
-    public TextField insert;
-    @FXML
-    public TextField values;
-    @FXML
-    public Button insert_button;
 
-    private JDBCService jdbcService = new JDBCService();
+    @FXML
+    public BorderPane insertBorderPane;
 
-    public InsertController() throws SQLException {
+    public InsertController() {
     }
 
     public void initialize() {
-        insert_button.setOnAction((event -> {
-            try {
-                jdbcService.execSQL(buildInsertString());
-                AlertDialog.createSuccessDialog("Your insert succeed");
-            } catch (SQLException e) {
-                AlertDialog.createAlertDialog(e);
-            }
-        }));
+
     }
 
-    private String buildInsertString() {
-        String sqlString = "INSERT INTO " + insert.getText() + " ";
-        sqlString += "VALUES " + values.getText();
-        return sqlString;
+    @FXML
+    private void handleShowView(ActionEvent e) {
+        String view = (String) ((Node) e.getSource()).getUserData();
+        loadFXML(getClass().getResource(view));
+    }
+
+    private void loadFXML(URL url) {
+        try {
+            FXMLLoader loader = new FXMLLoader(url);
+            insertBorderPane.setCenter(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
