@@ -11,7 +11,9 @@ import java.util.Set;
 public class Lecturer extends BaseEntity implements Serializable {
     private String name;
     private String surname;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "lecturer",orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "lecturer", orphanRemoval = true)
     private Set<Exam> exams;
 
     public String getName() {
@@ -40,6 +42,6 @@ public class Lecturer extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Lecturer : id = %d, name = %s, surname = %s",getId(), name, surname);
+        return String.format("Lecturer : id = %d, name = %s, surname = %s", getId(), name, surname);
     }
 }

@@ -11,7 +11,9 @@ public class Student extends BaseEntity implements Serializable {
     private String surname;
     @Column(unique = true)
     private Long identical_number;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "student",orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "student",orphanRemoval = true)
     private Set<Result> results;
 
     public Boolean getExpelled() {

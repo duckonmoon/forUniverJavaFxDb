@@ -1,7 +1,6 @@
 package controller;
 
-import dto.ExamDTO;
-import dto.ResultDTO;
+import dto.*;
 import entity.Lecturer;
 import entity.Session;
 import entity.Student;
@@ -36,15 +35,15 @@ public class ShowAllController {
             tableview.getColumns().clear();
             switch (t1) {
                 case "session":
-                    addColumnsToTableView(Session.class, tableview);
+                    addColumnsToTableView(SessionDTO.class, tableview);
                     data.addAll(selectService.getAllSessions());
                     break;
                 case "lecturer":
-                    addColumnsToTableView(Lecturer.class, tableview);
+                    addColumnsToTableView(LecturerDTO.class, tableview);
                     data.addAll(selectService.getAllLecturers());
                     break;
                 case "student":
-                    addColumnsToTableView(Student.class, tableview);
+                    addColumnsToTableView(StudentDTO.class, tableview);
                     data.addAll(selectService.getAllStudents());
                     break;
                 case "result":

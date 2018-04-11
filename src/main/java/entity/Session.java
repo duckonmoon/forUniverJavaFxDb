@@ -1,5 +1,6 @@
 package entity;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -17,7 +18,9 @@ public class Session extends BaseEntity implements Serializable {
     @Column(name = "enddate")
     private Date endDate;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "session",orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "session",orphanRemoval = true)
     private Set<Exam> exams;
 
     public Date getStartDate() {

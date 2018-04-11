@@ -1,6 +1,6 @@
 package controller;
 
-import entity.*;
+import entity.BaseEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,24 +10,20 @@ import javafx.scene.layout.AnchorPane;
 import service.SelectService;
 import util.AlertDialog;
 
-import java.io.Serializable;
-
 public class DeleteController {
 
     public static final String SESSION = "Session";
-    public static final  String LECTURER = "Lecturer";
-    public static final  String STUDENT = "Student";
-    public static final  String RESULT = "Result";
-    public static final  String EXAM = "Exam";
-
-
+    public static final String LECTURER = "Lecturer";
+    public static final String STUDENT = "Student";
+    public static final String RESULT = "Result";
+    public static final String EXAM = "Exam";
 
 
     @FXML
     public ComboBox<String> choice;
 
     @FXML
-    public ComboBox select_box;
+    public ComboBox<BaseEntity> select_box;
 
     @FXML
     public Button delete_button;
@@ -51,7 +47,7 @@ public class DeleteController {
         }));
 
         choice.valueProperty().addListener((ov, t, t1) -> {
-            ObservableList list = FXCollections.observableArrayList();
+            ObservableList<BaseEntity> list = FXCollections.observableArrayList();
             select_box.setVisible(true);
             if (anchor_pane.getChildren().contains(delete_button)) {
                 anchor_pane.getChildren().remove(delete_button);
@@ -88,7 +84,7 @@ public class DeleteController {
         });
 
         delete_button.setOnAction((event -> {
-            selectService.delete(select_box.valueProperty().get(),aClass);
+            selectService.delete(select_box.valueProperty().get(), aClass);
         }));
     }
 }

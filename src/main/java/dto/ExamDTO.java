@@ -14,7 +14,7 @@ public class ExamDTO implements Serializable {
 
     private String subject;
 
-    private Long id;
+    private Integer id;
 
     public Date getEndSession() {
         return endSession;
@@ -56,11 +56,11 @@ public class ExamDTO implements Serializable {
         this.subject = subject;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

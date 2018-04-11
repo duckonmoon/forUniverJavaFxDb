@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
+import static controller.DeleteController.*;
+
 public class SelectDao {
 
     private EntityManagerFactory entityManagerFactory;
@@ -50,10 +52,31 @@ public class SelectDao {
         return exams;
     }
 
-    public void delete(Object object){
+    public void delete(BaseEntity object, String clazz) {
         EntityManager manager = entityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
-        manager.remove(manager.contains(object) ? object : manager.merge(object));
+        Object persistanceObject;
+        switch (clazz) {
+            case SESSION:
+                persistanceObject = manager.find(Session.class, object.getId());
+                break;
+            case LECTURER:
+                persistanceObject = manager.find(Lecturer.class, object.getId());
+                break;
+            case STUDENT:
+                persistanceObject = manager.find(Student.class, object.getId());
+                break;
+            case EXAM:
+                persistanceObject = manager.find(Exam.class, object.getId());
+                break;
+            case RESULT:
+                persistanceObject = manager.find(Result.class, object.getId());
+                break;
+            default:
+                persistanceObject = null;
+                break;
+        }
+        manager.remove(persistanceObject);
         manager.getTransaction().commit();
         manager.close();
     }
