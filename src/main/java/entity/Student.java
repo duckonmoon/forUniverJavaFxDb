@@ -1,8 +1,8 @@
 package entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Student extends BaseEntity implements Serializable {
@@ -11,6 +11,8 @@ public class Student extends BaseEntity implements Serializable {
     private String surname;
     @Column(unique = true)
     private Long identical_number;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "student",orphanRemoval = true)
+    private Set<Result> results;
 
     public Boolean getExpelled() {
         return expelled;
@@ -42,5 +44,18 @@ public class Student extends BaseEntity implements Serializable {
 
     public void setIdentical_number(Long identical_number) {
         this.identical_number = identical_number;
+    }
+
+    public Set<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(Set<Result> results) {
+        this.results = results;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Student : id = %d, name = %s, surname = %s, identical number = %s, is Expelled = %b", getId(), name, surname, identical_number, expelled);
     }
 }

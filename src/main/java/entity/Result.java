@@ -16,11 +16,11 @@ public class Result extends BaseEntity implements Serializable {
     private Boolean commision2;
     @Column(nullable = false)
     private Integer mark;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
     @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;
 
@@ -63,5 +63,11 @@ public class Result extends BaseEntity implements Serializable {
 
     public void setExam(Exam exam) {
         this.exam = exam;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Result : id = %d, student = %d, exam = %s, mark = %d, commision1 = %b,  commision2 = %b",
+                getId(), student.getIdentical_number(), exam.getSubject(),mark, commision1, commision2);
     }
 }

@@ -49,4 +49,12 @@ public class SelectDao {
         manager.close();
         return exams;
     }
+
+    public void delete(Object object){
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        manager.getTransaction().begin();
+        manager.remove(manager.contains(object) ? object : manager.merge(object));
+        manager.getTransaction().commit();
+        manager.close();
+    }
 }

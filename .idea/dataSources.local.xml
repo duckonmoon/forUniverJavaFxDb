@@ -12,13 +12,7 @@
       <introspection-schemas>*:newuniver</introspection-schemas>
     </data-source>
     <data-source name="newuniverh@localhost" uuid="716d4dd5-bbaa-450b-a228-fe2e739cf239">
-      <database-info product="MySQL" version="5.7.18-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.45 ( Revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 )">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <introspection-schemas>*:newuniverh</introspection-schemas>
     </data-source>
   </component>

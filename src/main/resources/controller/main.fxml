@@ -10,14 +10,13 @@
             <BorderPane.margin>
                 <Insets left="25.0" top="25.0" right="10.0"/>
             </BorderPane.margin>
-            <Button text="Select" userData="/controller/select.fxml" onAction="#handleShowView"/>
+            <Button text="Show All Tables" userData="/controller/showall.fxml" onAction="#handleShowView"/>
             <Button text="Insert" userData="/controller/insert.fxml" onAction="#handleShowView"/>
             <Button text="Update" userData="/controller/update.fxml" onAction="#handleShowView"/>
             <Button text="Delete" userData="/controller/delete.fxml" onAction="#handleShowView"/>
-            <Button text="Show All Tables" userData="/controller/showall.fxml" onAction="#handleShowView"/>
         </VBox>
     </left>
     <center>
-        <fx:include source="select.fxml"/>
+        <fx:include source="showall.fxml"/>
     </center>
 </BorderPane>

@@ -8,6 +8,8 @@ import entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static controller.DeleteController.*;
+
 public class SelectService {
     private SelectDao selectDao = new SelectDao();
 
@@ -24,6 +26,14 @@ public class SelectService {
 
     public List<Student> getAllStudents() {
         return selectDao.getAllStudents();
+    }
+
+    public List<Result> getAllClearResults() {
+        return selectDao.getAllResults();
+    }
+
+    public List<Exam> getAllClearExams() {
+        return selectDao.getAllExams();
     }
 
     public List<ResultDTO> getAllResults() {
@@ -58,4 +68,19 @@ public class SelectService {
         return examDTOS;
     }
 
+    public void delete(Object object, String clazz){
+        selectDao.delete(object);
+        switch (clazz){
+            case SESSION:
+                break;
+            case RESULT:
+                break;
+            case LECTURER:
+                break;
+            case STUDENT:
+                break;
+            case EXAM:
+                break;
+        }
+    }
 }
