@@ -99,4 +99,16 @@ public class SelectDao {
             manager.close();
         }
     }
+
+    public void update(BaseEntity object){
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        try {
+            manager.getTransaction().begin();
+            manager.merge(object);
+            manager.getTransaction().commit();
+        } catch (Exception e){
+            manager.getTransaction().rollback();
+            manager.close();
+        }
+    }
 }

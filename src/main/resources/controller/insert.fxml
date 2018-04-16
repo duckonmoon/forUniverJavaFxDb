@@ -7,14 +7,14 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InsertController">
     <top>
         <AnchorPane prefHeight="30.0" prefWidth="615.0">
-            <Button layoutX="43.0" layoutY="14.0" mnemonicParsing="false" text="Session" userData="/controller/insert_session.fxml" onAction="#handleShowView"/>
-            <Button layoutX="148.0" layoutY="14.0" mnemonicParsing="false" text="Lecturer" userData="/controller/insert_lecturer.fxml" onAction="#handleShowView"/>
-            <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" text="Exam" userData="/controller/insert_exam.fxml" onAction="#handleShowView"/>
-            <Button layoutX="406.0" layoutY="14.0" mnemonicParsing="false" text="Student" userData="/controller/insert_student.fxml" onAction="#handleShowView"/>
-            <Button layoutX="516.0" layoutY="14.0" mnemonicParsing="false" text="Result" userData="/controller/insert_result.fxml" onAction="#handleShowView"/>
+            <Button layoutX="43.0" layoutY="14.0" mnemonicParsing="false" text="Session" userData="/controller/insert/insert_session.fxml" onAction="#handleShowView"/>
+            <Button layoutX="148.0" layoutY="14.0" mnemonicParsing="false" text="Lecturer" userData="/controller/insert/insert_lecturer.fxml" onAction="#handleShowView"/>
+            <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" text="Exam" userData="/controller/insert/insert_exam.fxml" onAction="#handleShowView"/>
+            <Button layoutX="406.0" layoutY="14.0" mnemonicParsing="false" text="Student" userData="/controller/insert/insert_student.fxml" onAction="#handleShowView"/>
+            <Button layoutX="516.0" layoutY="14.0" mnemonicParsing="false" text="Result" userData="/controller/insert/insert_result.fxml" onAction="#handleShowView"/>
         </AnchorPane>
     </top>
     <center>
-        <fx:include source="insert_session.fxml"/>
+        <fx:include source="insert/insert_session.fxml"/>
     </center>
 </BorderPane>

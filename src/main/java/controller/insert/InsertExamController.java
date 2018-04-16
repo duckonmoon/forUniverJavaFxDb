@@ -1,4 +1,4 @@
-package controller;
+package controller.insert;
 
 import entity.Exam;
 import entity.Lecturer;

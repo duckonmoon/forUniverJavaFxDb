@@ -1,45 +1,38 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import util.AlertDialog;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 
 public class UpdateController {
-    @FXML
-    public TextField update;
 
-    @FXML
-    public TextField where;
+    public BorderPane updateBorderPane;
 
-    @FXML
-    public TextField set;
-
-    @FXML
-    public Button update_button;
-
-    @FXML
-    AnchorPane container;
-
-    public UpdateController() throws SQLException {
+    public UpdateController() {
     }
 
-    public void initialize() {
-        update_button.setOnAction((event -> {
-
-            AlertDialog.createSuccessDialog("Your update succeed");
-
-
-        }));
+    @FXML
+    private void handleShowView(ActionEvent e) {
+        String view = (String) ((Node) e.getSource()).getUserData();
+        loadFXML(getClass().getResource(view));
     }
 
-    private String buildUpdateString() {
-        String sqlString = "UPDATE " + update.getText() + " ";
-        sqlString += "SET " + set.getText();
-        sqlString += "WHERE " + where.getText();
-        return sqlString;
+    private void loadFXML(URL url) {
+        try {
+            FXMLLoader loader = new FXMLLoader(url);
+            updateBorderPane.setCenter(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

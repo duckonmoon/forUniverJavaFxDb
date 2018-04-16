@@ -1,4 +1,4 @@
-package controller;
+package controller.insert;
 
 import entity.Lecturer;
 import javafx.fxml.FXML;

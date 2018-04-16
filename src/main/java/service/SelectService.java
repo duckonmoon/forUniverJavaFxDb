@@ -70,7 +70,11 @@ public class SelectService {
         selectDao.delete(object, clazz);
     }
 
-    public void insert(BaseEntity entity){
+    public void insert(BaseEntity entity) {
         selectDao.insert(entity);
+    }
+
+    public void update(BaseEntity entity) {
+        selectDao.update(entity);
     }
 }

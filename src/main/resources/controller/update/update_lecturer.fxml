@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.update.UpdateLecturerController">
+   <children>
+      <Button fx:id="updateButton" layoutX="277.0" layoutY="485.0" mnemonicParsing="false" text="Update" />
+      <TextField fx:id="nameTextField" layoutX="226.0" layoutY="220.0" promptText="Name" />
+      <TextField fx:id="surnameTextField" layoutX="226.0" layoutY="369.0" promptText="Surname" />
+      <Label layoutX="262.0" layoutY="32.0" text="Update Lecturer" />
+      <ComboBox fx:id="lecturerPicker" layoutX="86.0" layoutY="106.0" prefHeight="25.0" prefWidth="412.0" promptText="lecturer" />
+   </children>
+</AnchorPane>
