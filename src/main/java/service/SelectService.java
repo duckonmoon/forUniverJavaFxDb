@@ -66,6 +66,10 @@ public class SelectService {
         return examDTOS;
     }
 
+    public List<Student> getAllExpelledStudents(){
+        return selectDao.getAllExpelledStudents();
+    }
+
     public void delete(BaseEntity object, String clazz) {
         selectDao.delete(object, clazz);
     }

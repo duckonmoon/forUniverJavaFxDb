@@ -54,6 +54,10 @@ public class ShowAllController {
                     addColumnsToTableView(ExamDTO.class, tableview);
                     data.addAll(selectService.getAllExams());
                     break;
+                case "expelled students(stored procedure)":
+                    addColumnsToTableView(StudentDTO.class, tableview);
+                    data.addAll(selectService.getAllExpelledStudents());
+                    break;
             }
             tableview.setItems(data);
         });

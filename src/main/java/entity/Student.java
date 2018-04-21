@@ -4,6 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+
+@NamedStoredProcedureQuery(
+        name="GetAllExpelledStudent",
+        procedureName="GetAllExpelledStudent",
+        resultClasses = { Student.class },
+        parameters={
+                @StoredProcedureParameter(name="exp", type=Boolean.class, mode=ParameterMode.IN)
+        }
+)
 @Entity
 public class Student extends BaseEntity implements Serializable {
     private Boolean expelled;

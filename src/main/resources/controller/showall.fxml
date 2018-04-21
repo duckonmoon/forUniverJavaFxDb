@@ -16,6 +16,7 @@
                     <String fx:value="result"/>
                     <String fx:value="session"/>
                     <String fx:value="student"/>
+                    <String fx:value="expelled students(stored procedure)"/>
                 </FXCollections>
             </items>
         </ComboBox>

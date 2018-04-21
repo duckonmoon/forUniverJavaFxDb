@@ -96,8 +96,8 @@ public class SelectDao {
             manager.getTransaction().commit();
         } catch (Exception e){
             manager.getTransaction().rollback();
-            manager.close();
         }
+        manager.close();
     }
 
     public void update(BaseEntity object){
@@ -108,7 +108,14 @@ public class SelectDao {
             manager.getTransaction().commit();
         } catch (Exception e){
             manager.getTransaction().rollback();
-            manager.close();
         }
+        manager.close();
+    }
+
+    public List<Student> getAllExpelledStudents(){
+        EntityManager manager = entityManagerFactory.createEntityManager();
+        List<Student> studentList = manager.createNamedStoredProcedureQuery("GetAllExpelledStudent").setParameter("exp",true).getResultList();
+        manager.close();
+        return studentList;
     }
 }
