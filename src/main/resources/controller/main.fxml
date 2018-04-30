@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="mainBorderPane" fx:controller="controller.MainController" xmlns:fx="http://javafx.com/fxml">
+
+<BorderPane  fx:id="mainBorderPane" id="mainBorderPane" stylesheets="@../styles/main.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="controller.MainController">
     <left>
         <VBox spacing="10.0">
             <BorderPane.margin>
-                <Insets left="25.0" top="25.0" right="10.0"/>
+                <Insets left="25.0" right="10.0" top="25.0" />
             </BorderPane.margin>
-            <Button text="Show All Tables" userData="/controller/showall.fxml" onAction="#handleShowView"/>
-            <Button text="Insert" userData="/controller/insert.fxml" onAction="#handleShowView"/>
-            <Button text="Update" userData="/controller/update.fxml" onAction="#handleShowView"/>
-            <Button text="Delete" userData="/controller/delete.fxml" onAction="#handleShowView"/>
+            <Button onAction="#handleShowView" text="Show All Tables" userData="/controller/showall.fxml" />
+            <Button onAction="#handleShowView" text="Insert" userData="/controller/insert.fxml" />
+            <Button onAction="#handleShowView" text="Update" userData="/controller/update.fxml" />
+            <Button onAction="#handleShowView" text="Delete" userData="/controller/delete.fxml" />
         </VBox>
     </left>
     <center>
-        <fx:include source="showall.fxml"/>
+        <fx:include source="showall.fxml" />
     </center>
 </BorderPane>
